@@ -20,3 +20,11 @@ The majority parts of the project will rely on open-source data:
 - 2) the sentiment analysis part rely on other publicly available comments on the Internet. (which may include review by analysts, hotspots on Reddit, financial news coverage, etc.) 
  
 While unlikely, the project may also require information about financial derivatives (e.g. Options, Futures, Bonds) Some of those might require access to Bloomberg or other professional databases. It should be noted that the project will be able to function well without these add-ons, but we might experiment with some of them in order to achieve a higher rate of returns and lower level of volatility.
+
+## Tools/Skills Required
+ 
+- Web Scraping: scrapy, beautiful soup
+- Natural Language Processing: nltk
+- Data Cleaning/Preprocessing: Pandas, Numpy
+- Machine Learning: scikit-learn, tensorflow
+- Data Visualization: plotly, matplotlib
