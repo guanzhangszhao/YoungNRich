@@ -28,3 +28,9 @@ While unlikely, the project may also require information about financial derivat
 - Data Cleaning/Preprocessing: Pandas, Numpy
 - Machine Learning: scikit-learn, tensorflow
 - Data Visualization: plotly, matplotlib
+
+## Risks
+ 
+- The incompleteness of the dataset might cause problems (the Options dataset) on doing dynamic predictions.
+- We might need to restrict the intervals of portfolio adjustment in accordance with market information because of the limited calculation ability of the computer as well as the time imprecision when acquiring market sentiment signals.
+- *Technically*, Stocks with low levels of liquidity tend to have more inaccurate data when the observation intervals are large. But due to the inherent high volatility of these stocks, we don’t expect them to account for a large portion of the optimized portfolio which may allow it to have a significant impact.
