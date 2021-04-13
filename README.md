@@ -34,3 +34,13 @@ While unlikely, the project may also require information about financial derivat
 - The incompleteness of the dataset might cause problems (the Options dataset) on doing dynamic predictions.
 - We might need to restrict the intervals of portfolio adjustment in accordance with market information because of the limited calculation ability of the computer as well as the time imprecision when acquiring market sentiment signals.
 - *Technically*, Stocks with low levels of liquidity tend to have more inaccurate data when the observation intervals are large. But due to the inherent high volatility of these stocks, we don’t expect them to account for a large portion of the optimized portfolio which may allow it to have a significant impact.
+
+## Ethics
+ 
+The database on which we conduct sentiment analysis may include radical and opinionated comments/expectations on future market performance. Some may be poorly correlated with rational perception but oriented towards attacks or criticism. It’s the algorithm’s duty to discard these highly irrelevant comments.
+ 
+## Tentative Timeline 
+ 
+- After two weeks: Data Acquisition and Preprocessing Done, Basic Algorithm to Calculate Historical Part of the Data
+- After four weeks: Sentiment Analysis Algorithm to Predict Volatility and Expected Returns, Algorithm to Construct an Optimized Portfolio
+- After six weeks: Retrospective Testing Using Historical Data and Necessary Adjustment made to the algorithm, Data Visualization of the Portfolio’s Historical Performance.
