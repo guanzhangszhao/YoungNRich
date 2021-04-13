@@ -43,4 +43,4 @@ The database on which we conduct sentiment analysis may include radical and opin
  
 - After two weeks: Data Acquisition and Preprocessing Done, Basic Algorithm to Calculate Historical Part of the Data
 - After four weeks: Sentiment Analysis Algorithm to Predict Volatility and Expected Returns, Algorithm to Construct an Optimized Portfolio
-- After six weeks: Retrospective Testing Using Historical Data and Necessary Adjustment made to the algorithm, Data Visualization of the Portfolio’s Historical Performance.
+- After six weeks: Retrospective Testing Using Historical Data and Necessary Adjustment made to the algorithm, Data Visualization of the Portfolio’s Historical Performance.。
