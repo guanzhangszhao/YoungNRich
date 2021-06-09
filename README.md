@@ -48,6 +48,8 @@ The database on which we conduct sentiment analysis may include radical and opin
 
 # User Usage
 
+File:  YNR.ipynb
+
 Function: `find_optimal_port(threshold = 0.01, date = dt.datetime.now())`
 
 Argument: 
