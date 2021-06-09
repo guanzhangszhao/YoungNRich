@@ -44,3 +44,17 @@ The database on which we conduct sentiment analysis may include radical and opin
 - After two weeks: Data Acquisition and Preprocessing Done, Basic Algorithm to Calculate Historical Part of the Data
 - After four weeks: Sentiment Analysis Algorithm to Predict Volatility and Expected Returns, Algorithm to Construct an Optimized Portfolio
 - After six weeks: Retrospective Testing Using Historical Data and Necessary Adjustment made to the algorithm, Data Visualization of the Portfolio’s Historical Performance.
+
+
+# User Usage
+
+Function: `find_optimal_port(threshold = 0.01, date = dt.datetime.now())`
+
+Argument: 
+- Input: 
+1. `threshold`: an integer representing the maximum volatility the user can accpet, default to be 0.01(1%)
+2. `date`: the time the portfolio construction is based on, default to be today
+
+- Output: a dataframe that reflects the optimized portfolio, with predicted returns and volatility, as well as weights for each stock
+
+
