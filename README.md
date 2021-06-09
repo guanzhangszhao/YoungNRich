@@ -52,11 +52,11 @@ File:  YNR.ipynb
 
 Function: `find_optimal_port(threshold = 0.01, date = dt.datetime.now())`
 
-Argument: 
-- Input: 
+
+Input: 
 1. `threshold`: an integer representing the maximum volatility the user can accpet, default to be 0.01(1%)
 2. `date`: the time the portfolio construction is based on, default to be today
 
-- Output: a dataframe that reflects the optimized portfolio, with predicted returns and volatility, as well as weights of the stocks
+Output: a dataframe that reflects the optimized portfolio, with predicted returns and volatility, as well as weights of the stocks
 
 
