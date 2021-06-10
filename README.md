@@ -1,57 +1,20 @@
-# Project Proposal
+# Portfolio Construction based on Predicted Stock Returns and Volatilities
 
 
 ## Abstract
 
-We seek to provide a useful and easy-to-use algorithm for common investors to construct a portfolio that considers both historical stock performance and short-term market sentiment signals. This algorithm selects stocks (and possibly their derivatives) from a selection specified by the user, and calculates the stocks’ volatility and expected returns using both historical data and current market sentiment. With these adjusted expected returns and volatility, the algorithm produces an optimized portfolio based economic theories.
- 
-## Planned Deliverables
+We seek to provide a useful and easy-to-use algorithm for common investors to construct a portfolio that considers both historical stock performance and short-term market sentiment signals. This algorithm selects stocks from a selection of S&P 500 stocks with negative alphas, and calculates the stocks’ volatility and expected returns using both historical data and current market sentiment. With these adjusted expected returns and volatility, the algorithm produces an optimized portfolio based economic theories.
 
-The algorithm will be wrapped up as a function (or potentially python package) which allows the user to directly utilize the function through simply supplying arguments. 
-
-- Full Success: the project produces an algorithm that constructs optimized portfolios which historically performs better than the given benchmark (SPX500 / NASDAQ100) within a given period of time
-- Partial Success: 1) The project might only be able to calculate and predict volatility and expected returns without producing a portfolio 2) Due to the lack of access to market information, the project may only operate on a limited set of stocks and financial tools 3) It’s able to produce an optimized portfolio but such portfolio performs poorly in retrospective testing
-
-## Resources Required
- 
-The majority parts of the project will rely on open-source data:
- 
-- 1) Financial Data extracted from Yahoo Finance (which can be easily accessed through yfinance python module) and 
-- 2) the sentiment analysis part rely on other publicly available comments on the Internet. (which may include review by analysts, hotspots on Reddit, financial news coverage, etc.) 
- 
-While unlikely, the project may also require information about financial derivatives (e.g. Options, Futures, Bonds) Some of those might require access to Bloomberg or other professional databases. It should be noted that the project will be able to function well without these add-ons, but we might experiment with some of them in order to achieve a higher rate of returns and lower level of volatility.
-
-## Tools/Skills Required
- 
-- Web Scraping: scrapy, beautiful soup
-- Natural Language Processing: nltk
-- Data Cleaning/Preprocessing: Pandas, Numpy
-- Machine Learning: scikit-learn, tensorflow
-- Data Visualization: plotly, matplotlib
-
-## Risks
- 
-- The incompleteness of the dataset might cause problems (the Options dataset) on doing dynamic predictions.
-- We might need to restrict the intervals of portfolio adjustment in accordance with market information because of the limited calculation ability of the computer as well as the time imprecision when acquiring market sentiment signals.
-- *Technically*, Stocks with low levels of liquidity tend to have more inaccurate data when the observation intervals are large. But due to the inherent high volatility of these stocks, we don’t expect them to account for a large portion of the optimized portfolio which may allow it to have a significant impact.
-
-## Ethics
- 
-The database on which we conduct sentiment analysis may include radical and opinionated comments/expectations on future market performance. Some may be poorly correlated with rational perception but oriented towards attacks or criticism. It’s the algorithm’s duty to discard these highly irrelevant comments.
- 
-## Tentative Timeline 
- 
-- After two weeks: Data Acquisition and Preprocessing Done, Basic Algorithm to Calculate Historical Part of the Data
-- After four weeks: Sentiment Analysis Algorithm to Predict Volatility and Expected Returns, Algorithm to Construct an Optimized Portfolio
-- After six weeks: Retrospective Testing Using Historical Data and Necessary Adjustment made to the algorithm, Data Visualization of the Portfolio’s Historical Performance.
+See *YNR.ipynb* for detailed model establishment and explanation
+See *Volatility Sentiment Analysis.ipynb* for sentiment analysis and justification of exclusion of Reddit posts and Tipranks trading information in the final algorithm
+See *portfolioConstruction.py* with functions only for direct portfolio construction
 
 
-# User Usage
+## User Usage
 
-File:  YNR.ipynb
+File:  portfolioConstruction.py
 
-Function: `find_optimal_port(threshold = 0.01, date = dt.datetime.now())`
-
+Main Function: `find_optimal_port(threshold = 0.01, date = dt.datetime.now())`
 
 Input: 
 1. `threshold`: an integer representing the maximum volatility the user can accpet, default to be 0.01(1%)
@@ -60,3 +23,192 @@ Input:
 Output: a dataframe that reflects the optimized portfolio, with predicted returns and volatility, as well as weights of the stocks
 
 
+
+## Documentation
+
+`seek_alpha()`
+- Output: a `dictionary` containing tickers of stocks with postivie, neutral and negative alphas in the time period 2020.5 to 2021.5
+
+- Example: 
+```python
+D = seek_alpha()
+pos, neg, obj = D["Positive"], D["Negative"], D["Neutral"]
+
+# first 5 stocks in the list of stocks with negative alphas,
+# and the number of stocks with negative alphas
+neg[:5], len(neg)
+```
+```
+(['BAM', 'ICE', 'TOT', 'EPAY', 'TMQ'], 110)
+```
+
+
+`get_tweets(tickers, begin, end)`
+- Input:
+- - tickers: a `list` of tickers of stocks about which to scrape for tweets
+- - begin: the begin date of the time period in which tweets are scraped, `dt.datetime` object
+- - end: the end date of the time period in which tweets are scraped, `dt.datetime` object
+
+- Output:
+A `dataframe` containing the Tweets, Date, and Ticker in its columns
+
+- Example: 
+```python
+get_tweets(["AAPL","TSLA"], dt.datetime(2021,4,20), dt.datetime(2021,4,21))
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Tweets</th>
+      <th>Date</th>
+      <th>Ticker</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <th>$AAPL NEW ARTICLE : Apple event fails to save ... </th>
+      <th>2021-04-20</th>
+      <th>AAPL</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>@Stash COME JOIN THE PARTY #StockStashParty an...</th>
+      <th>2021-04-21</th>
+      <th>AAPL</th>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>✨ Participate in the April #Webull wheel event...</th>
+      <th>2021-04-20.</th>
+      <th>TSLA</th>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>Don’t tell Tommy but a whale has been buying 🐳...</th>
+      <th>2021-04-21</th>
+      <th>TSLA</th>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+`get_prices(tickers, begin, end):`
+- Input:
+- - tickers: a `list` of tickers of stocks of which to retrieve returns
+- - begin: the begin date of the time period in which returns are retrieved, `dt.datetime` object
+- - end: the end date of the time period in which returns are retrieved `dt.datetime` object
+
+- Output:
+A `dataframe` containing daily price changes for each specified stock in the specified time period
+
+
+- Example: 
+```python
+get_prices(['AAPL','TSLA'], dt.datetime(2021,1,1), dt.datetime(2021,4,30))
+```
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Date</th>
+      <th>AAPL</th>
+      <th>TSLA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <th>2021-01-04</th>
+      <th>-0.024719</th>
+      <th>0.034152</th>
+    </tr>
+    <tr>
+      <th>1</th>
+      <th>2021-01-05</th>
+      <th>0.012364</th>
+      <th>0.007317</th>
+    </tr>
+    <tr>
+      <th>2</th>
+      <th>2021-01-06</th>
+      <th>-0.033662</th>
+      <th>0.028390</th>
+    </tr>
+    <tr>
+      <th>3</th>
+      <th>2021-01-07</th>
+      <th>0.034123</th>
+      <th>0.079447</th>
+    </tr>
+    <tr>
+      <th>4</th>
+      <th>2021-01-08</th>
+      <th>0.008631</th>
+      <th>0.078403</th>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+`predict_return(ticker, date = dt.datetime.now())`
+- Input:
+- - ticker: a `string` of one stock ticker
+- - date: the day for which the return is predicted, `dt.datetime` object, dafault to be today
+
+- Output:
+A `numerical` predicted return of the input stock
+
+
+`predict_returns(tickers, date = dt.datetime.now())`
+- Input:
+- - tickers: a `list` of tickers of stocks of which to retrieve returns
+- - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
+
+- Output:
+A `dataframe` containing tickers and their corresponding predicted returns
+
+
+`stock_var(tickers, date = dt.datetime.now())`
+- Input:
+- - tickers: a `list` of tickers of stocks of which to retrieve returns
+- - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
+
+- Output: a `dataframe` representing the variance covariance matrix for the specified stocks in a one-year period ending at the specified date
+
+
+`save_sp500_tickers()`
+- Output: a `list` of all sS&P500 tickers
