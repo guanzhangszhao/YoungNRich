@@ -139,9 +139,9 @@ get_tweets(["AAPL","TSLA"], dt.datetime(2021,4,20), dt.datetime(2021,4,21))
 
 `get_prices(tickers, begin, end):`
 - Input:
-- - tickers: a `list` of tickers of stocks of which to retrieve returns
-- - begin: the begin date of the time period in which returns are retrieved, `dt.datetime` object
-- - end: the end date of the time period in which returns are retrieved `dt.datetime` object
+  - tickers: a `list` of tickers of stocks of which to retrieve returns
+  - begin: the begin date of the time period in which returns are retrieved, `dt.datetime` object
+  - end: the end date of the time period in which returns are retrieved `dt.datetime` object
 
 - Output:
 A `dataframe` containing daily price changes for each specified stock in the specified time period
@@ -201,8 +201,8 @@ get_prices(['AAPL','TSLA'], dt.datetime(2021,1,1), dt.datetime(2021,4,30))
 
 `predict_return(ticker, date = dt.datetime.now())`
 - Input:
-- - ticker: a `string` of one stock ticker
-- - date: the day for which the return is predicted, `dt.datetime` object, dafault to be today
+  - ticker: a `string` of one stock ticker
+  - date: the day for which the return is predicted, `dt.datetime` object, dafault to be today
 
 - Output:
 A `numerical` predicted return of the input stock
@@ -211,8 +211,8 @@ A `numerical` predicted return of the input stock
 
 `predict_returns(tickers, date = dt.datetime.now())`
 - Input:
-- - tickers: a `list` of tickers of stocks of which to retrieve returns
-- - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
+  - tickers: a `list` of tickers of stocks of which to retrieve returns
+  - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
 
 - Output:
 A `dataframe` containing tickers and their corresponding predicted returns
@@ -221,8 +221,8 @@ A `dataframe` containing tickers and their corresponding predicted returns
 
 `stock_var(tickers, date = dt.datetime.now())`
 - Input:
-- - tickers: a `list` of tickers of stocks of which to retrieve returns
-- - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
+  - tickers: a `list` of tickers of stocks of which to retrieve returns
+  - date: the day for which the returns are predicted, `dt.datetime` object, dafault to be today
 
 - Output: a `dataframe` representing the variance covariance matrix for the specified stocks in a one-year period ending at the specified date
 
