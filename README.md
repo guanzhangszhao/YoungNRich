@@ -41,13 +41,13 @@ neg[:5], len(neg)
 ```
 (['BAM', 'ICE', 'TOT', 'EPAY', 'TMQ'], 110)
 ```
-
+----------------
 
 `get_tweets(tickers, begin, end)`
 - Input:
-- - tickers: a `list` of tickers of stocks about which to scrape for tweets
-- - begin: the begin date of the time period in which tweets are scraped, `dt.datetime` object
-- - end: the end date of the time period in which tweets are scraped, `dt.datetime` object
+  - tickers: a `list` of tickers of stocks about which to scrape for tweets
+  - begin: the begin date of the time period in which tweets are scraped, `dt.datetime` object
+  - end: the end date of the time period in which tweets are scraped, `dt.datetime` object
 
 - Output:
 A `dataframe` containing the Tweets, Date, and Ticker in its columns
