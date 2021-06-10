@@ -22,6 +22,45 @@ Input:
 
 Output: a dataframe that reflects the optimized portfolio, with predicted returns and volatility, as well as weights of the stocks
 
+Example:
+```python
+find_optimal_port()
+```
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Returns</th>
+      <th>Volatility</th>
+      <th>VRTX weight</th>
+      <th>CAG weight</th>
+      <th>CPB weight</th>
+      <th>PRGO weight</th>
+      <th>VRSN weight</th>
+      <th>EQR weight</th>
+      <th>NOV weight</th>
+      <th>V weight</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+    <th>24</th>
+    <th>0.004875</th>
+    <th>0.009979</th>
+    <th>0.066031</th>
+    <th>0.125143</th>
+    <th>0.249491</th>
+    <th>0.122638</th>
+    <th>0.252543</th>
+    <th>0.138797</th>
+    <th>0.014432</th>
+    <th>0.030924</th>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 
 
 ## Documentation
@@ -58,19 +97,6 @@ get_tweets(["AAPL","TSLA"], dt.datetime(2021,4,20), dt.datetime(2021,4,21))
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -109,6 +135,7 @@ get_tweets(["AAPL","TSLA"], dt.datetime(2021,4,20), dt.datetime(2021,4,21))
 </table>
 </div>
 
+----------------
 
 `get_prices(tickers, begin, end):`
 - Input:
@@ -126,19 +153,6 @@ get_prices(['AAPL','TSLA'], dt.datetime(2021,1,1), dt.datetime(2021,4,30))
 ```
 
 <div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
 <table border="1" class="dataframe">
   <thead>
     <tr style="text-align: right;">
@@ -183,6 +197,7 @@ get_prices(['AAPL','TSLA'], dt.datetime(2021,1,1), dt.datetime(2021,4,30))
 </table>
 </div>
 
+----------------
 
 `predict_return(ticker, date = dt.datetime.now())`
 - Input:
@@ -192,6 +207,7 @@ get_prices(['AAPL','TSLA'], dt.datetime(2021,1,1), dt.datetime(2021,4,30))
 - Output:
 A `numerical` predicted return of the input stock
 
+----------------
 
 `predict_returns(tickers, date = dt.datetime.now())`
 - Input:
@@ -201,6 +217,7 @@ A `numerical` predicted return of the input stock
 - Output:
 A `dataframe` containing tickers and their corresponding predicted returns
 
+----------------
 
 `stock_var(tickers, date = dt.datetime.now())`
 - Input:
@@ -209,6 +226,7 @@ A `dataframe` containing tickers and their corresponding predicted returns
 
 - Output: a `dataframe` representing the variance covariance matrix for the specified stocks in a one-year period ending at the specified date
 
+----------------
 
 `save_sp500_tickers()`
 - Output: a `list` of all sS&P500 tickers
