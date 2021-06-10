@@ -6,7 +6,9 @@
 We seek to provide a useful and easy-to-use algorithm for common investors to construct a portfolio that considers both historical stock performance and short-term market sentiment signals. This algorithm selects stocks from a selection of S&P 500 stocks with negative alphas, and calculates the stocks’ volatility and expected returns using both historical data and current market sentiment. With these adjusted expected returns and volatility, the algorithm produces an optimized portfolio based economic theories.
 
 See *YNR.ipynb* for detailed model establishment and explanation
+
 See *Volatility Sentiment Analysis.ipynb* for sentiment analysis and justification of exclusion of Reddit posts and Tipranks trading information in the final algorithm
+
 See *portfolioConstruction.py* with functions only for direct portfolio construction
 
 
